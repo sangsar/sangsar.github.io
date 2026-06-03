@@ -61,7 +61,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ستاره‌ها و سیاره‌های ریز */
+        /* ستاره‌ها و سیاره‌ها */
         .stars-container {
             position: fixed;
             top: 0;
@@ -74,45 +74,48 @@
 
         .star, .planet {
             position: absolute;
-            border-radius: 50%;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
         }
 
+        /* ستاره‌های واقعی (پنج‌پر) */
         .star {
             background: white;
-            box-shadow: 0 0 4px var(--pink), 0 0 8px var(--purple);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: 0 0 6px var(--pink), 0 0 12px var(--purple);
             animation-name: twinkle;
             animation-duration: 4s;
         }
 
+        /* سیاره‌های گرد */
         .planet {
+            border-radius: 50%;
             background: var(--pink);
             box-shadow: 0 0 6px var(--purple), 0 0 12px var(--pink);
             animation-name: orbit;
             animation-duration: 12s;
         }
 
-        .star:nth-child(1) { width: 2px; height: 2px; top: 12%; left: 8%; animation-delay: 0s; }
-        .star:nth-child(2) { width: 1px; height: 1px; top: 25%; left: 75%; animation-delay: 1s; }
-        .star:nth-child(3) { width: 2px; height: 2px; top: 58%; left: 18%; animation-delay: 0.5s; }
-        .star:nth-child(4) { width: 1px; height: 1px; top: 72%; left: 82%; animation-delay: 1.5s; }
-        .star:nth-child(5) { width: 3px; height: 3px; top: 8%; left: 48%; animation-delay: 0.8s; }
-        .star:nth-child(6) { width: 1px; height: 1px; top: 45%; left: 65%; animation-delay: 2s; }
-        .star:nth-child(7) { width: 2px; height: 2px; top: 88%; left: 35%; animation-delay: 0.3s; }
-        .star:nth-child(8) { width: 1px; height: 1px; top: 32%; left: 6%; animation-delay: 2.5s; }
-        .star:nth-child(9) { width: 2px; height: 2px; top: 55%; left: 90%; animation-delay: 0.2s; }
-        .star:nth-child(10) { width: 1px; height: 1px; top: 68%; left: 50%; animation-delay: 1.2s; }
+        .star:nth-child(1) { width: 6px; height: 6px; top: 12%; left: 8%; animation-delay: 0s; }
+        .star:nth-child(2) { width: 4px; height: 4px; top: 25%; left: 75%; animation-delay: 1s; }
+        .star:nth-child(3) { width: 5px; height: 5px; top: 58%; left: 18%; animation-delay: 0.5s; }
+        .star:nth-child(4) { width: 3px; height: 3px; top: 72%; left: 82%; animation-delay: 1.5s; }
+        .star:nth-child(5) { width: 7px; height: 7px; top: 8%; left: 48%; animation-delay: 0.8s; }
+        .star:nth-child(6) { width: 3px; height: 3px; top: 45%; left: 65%; animation-delay: 2s; }
+        .star:nth-child(7) { width: 5px; height: 5px; top: 88%; left: 35%; animation-delay: 0.3s; }
+        .star:nth-child(8) { width: 4px; height: 4px; top: 32%; left: 6%; animation-delay: 2.5s; }
+        .star:nth-child(9) { width: 5px; height: 5px; top: 55%; left: 90%; animation-delay: 0.2s; }
+        .star:nth-child(10) { width: 3px; height: 3px; top: 68%; left: 50%; animation-delay: 1.2s; }
 
-        .planet:nth-child(11) { width: 3px; height: 3px; top: 18%; left: 28%; animation-delay: 0s; background: var(--purple); }
-        .planet:nth-child(12) { width: 2px; height: 2px; top: 62%; left: 72%; animation-delay: 2s; background: var(--pink); }
-        .planet:nth-child(13) { width: 4px; height: 4px; top: 40%; left: 15%; animation-delay: 4s; background: var(--purple); }
-        .planet:nth-child(14) { width: 2px; height: 2px; top: 80%; left: 55%; animation-delay: 1s; background: var(--pink); }
-        .planet:nth-child(15) { width: 3px; height: 3px; top: 5%; left: 85%; animation-delay: 3s; background: var(--purple); }
+        .planet:nth-child(11) { width: 8px; height: 8px; top: 18%; left: 28%; animation-delay: 0s; background: var(--purple); }
+        .planet:nth-child(12) { width: 6px; height: 6px; top: 62%; left: 72%; animation-delay: 2s; background: var(--pink); }
+        .planet:nth-child(13) { width: 10px; height: 10px; top: 40%; left: 15%; animation-delay: 4s; background: var(--purple); }
+        .planet:nth-child(14) { width: 5px; height: 5px; top: 80%; left: 55%; animation-delay: 1s; background: var(--pink); }
+        .planet:nth-child(15) { width: 8px; height: 8px; top: 5%; left: 85%; animation-delay: 3s; background: var(--purple); }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
         }
 
         @keyframes orbit {
@@ -132,48 +135,14 @@
             align-items: center;
         }
 
-        /* لوگو + نت + نوارهای نامحسوس */
+        /* لوگو + نت (بدون خطوط) */
         .logo-area {
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             margin-top: 60px;
             margin-bottom: 40px;
-        }
-
-        /* نوارهای اکولایزر دور لوگو */
-        .logo-area::before,
-        .logo-area::after {
-            content: "";
-            position: absolute;
-            left: -18px;
-            width: 2px;
-            border-radius: 2px;
-            animation: eqMove 1.8s infinite ease-in-out alternate;
-            opacity: 0.6;
-        }
-
-        .logo-area::before {
-            height: 30px;
-            background: var(--pink);
-            top: 10px;
-            animation-delay: 0s;
-        }
-
-        .logo-area::after {
-            height: 20px;
-            background: var(--purple);
-            bottom: 10px;
-            left: auto;
-            right: -18px;
-            animation-delay: 0.9s;
-        }
-
-        @keyframes eqMove {
-            0% { transform: scaleY(0.6); }
-            100% { transform: scaleY(1.4); }
         }
 
         .music-note {
@@ -389,7 +358,7 @@
             font-weight: 300;
         }
 
-        /* گرامافون بدون بازو */
+        /* گرامافون بدون بازو با نور جدید */
         .vinyl-graphic {
             width: 44px;
             height: 44px;
@@ -408,36 +377,13 @@
             filter: drop-shadow(0 0 6px var(--pink));
         }
 
-        /* هایلایت چرخان روی وینیل */
-        .vinyl-graphic::after {
-            content: "";
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 10px;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transform: rotate(-30deg);
-            pointer-events: none;
-            animation: highlightSpin 2.5s linear infinite paused;
-        }
-
-        .vinyl-graphic.playing::after {
-            animation-play-state: running;
-        }
-
         @keyframes rotateVinyl {
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes highlightSpin {
-            100% { transform: rotate(330deg); }
-        }
-
         @media (max-width: 600px) {
             .logo { font-size: 2.8rem; }
-            .logo-area { gap: 8px; }
+            .logo-area { gap: 8px; margin-top: 45px; }
             .music-note { width: 50px; height: 50px; }
             .song-title { font-size: 1rem; }
         }
@@ -447,7 +393,7 @@
     <!-- کهکشان -->
     <div class="galaxy"></div>
 
-    <!-- ستاره‌ها و سیاره‌ها -->
+    <!-- ستاره‌های واقعی و سیاره‌ها -->
     <div class="stars-container">
         <div class="star"></div><div class="star"></div><div class="star"></div>
         <div class="star"></div><div class="star"></div><div class="star"></div>
@@ -486,7 +432,7 @@
             <div class="vinyl-graphic" id="vinylGraphic">
                 <svg class="vinyl-svg" viewBox="0 0 100 100">
                     <defs>
-                        <radialGradient id="vinylGrad" cx="50%" cy="50%">
+                        <radialGradient id="vinylGrad" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stop-color="#1a1a1a"/>
                             <stop offset="12%" stop-color="#1a1a1a"/>
                             <stop offset="13%" stop-color="#2a2a2a"/>
@@ -501,12 +447,21 @@
                             <stop offset="85%" stop-color="#1a1a1a"/>
                             <stop offset="100%" stop-color="#1a1a1a"/>
                         </radialGradient>
+                        <!-- نور متمرکز روی وینیل -->
+                        <radialGradient id="shineLight" cx="35%" cy="35%" r="60%">
+                            <stop offset="0%" stop-color="rgba(255,255,255,0.35)"/>
+                            <stop offset="30%" stop-color="rgba(255,255,255,0.1)"/>
+                            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                        </radialGradient>
                     </defs>
+                    <!-- صفحه اصلی -->
                     <circle cx="50" cy="50" r="48" fill="url(#vinylGrad)" stroke="#ff80ab" stroke-width="2"/>
+                    <!-- لایه نور -->
+                    <circle cx="50" cy="50" r="48" fill="url(#shineLight)"/>
+                    <!-- مرکز بنفش -->
                     <circle cx="50" cy="50" r="12" fill="#b388eb" stroke="#ff80ab" stroke-width="1.5"/>
+                    <!-- نقطه سیاه مرکزی -->
                     <circle cx="50" cy="50" r="3" fill="#0a0a0c"/>
-                    <!-- انعکاس نور -->
-                    <ellipse cx="35" cy="28" rx="18" ry="6" fill="rgba(255,255,255,0.06)" transform="rotate(-35 35 28)"/>
                 </svg>
             </div>
         </div>
