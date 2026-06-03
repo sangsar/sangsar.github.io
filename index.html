@@ -32,7 +32,6 @@
             position: relative;
         }
 
-        /* کهکشان پس‌زمینه */
         .galaxy {
             position: fixed;
             top: 0;
@@ -61,7 +60,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ستاره‌ها و سیاره‌ها */
         .stars-container {
             position: fixed;
             top: 0;
@@ -72,104 +70,16 @@
             pointer-events: none;
         }
 
-        .star, .planet {
-            position: absolute;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-        }
-
-        /* ستاره‌های واقعی (پنج‌پر) */
         .star {
-            background: white;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 6px var(--pink), 0 0 12px var(--purple);
-            animation-name: twinkle;
-            animation-duration: 4s;
-        }
-
-        /* سیاره‌های حلقه‌دار */
-        .planet {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--pink);
-            box-shadow: 0 0 8px var(--pink), 0 0 20px var(--purple);
-            animation-name: orbit;
-            animation-duration: 10s;
-        }
-
-        /* حلقه زحل مانند */
-        .planet::before {
-            content: "";
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-20deg);
-            width: 200%;
-            height: 35%;
-            border-radius: 50%;
-            border: 2px solid rgba(255,128,171,0.7);
-            box-shadow: 0 0 8px var(--purple);
-            pointer-events: none;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 4s infinite ease-in-out;
+            opacity: 0.8;
         }
-
-        .planet:nth-child(even) {
-            background: var(--purple);
-        }
-
-        .planet:nth-child(even)::before {
-            border-color: rgba(179,136,235,0.7);
-        }
-
-        /* ۲۵ ستاره با رنگ‌های متنوع */
-        .star:nth-child(1) { width: 6px; height: 6px; top: 12%; left: 8%; animation-delay: 0s; }
-        .star:nth-child(2) { width: 4px; height: 4px; top: 25%; left: 75%; animation-delay: 0.4s; }
-        .star:nth-child(3) { width: 5px; height: 5px; top: 58%; left: 18%; animation-delay: 0.8s; }
-        .star:nth-child(4) { width: 3px; height: 3px; top: 72%; left: 82%; animation-delay: 1.2s; }
-        .star:nth-child(5) { width: 7px; height: 7px; top: 8%; left: 48%; animation-delay: 1.6s; }
-        .star:nth-child(6) { width: 3px; height: 3px; top: 45%; left: 65%; animation-delay: 2.0s; }
-        .star:nth-child(7) { width: 5px; height: 5px; top: 88%; left: 35%; animation-delay: 2.4s; }
-        .star:nth-child(8) { width: 4px; height: 4px; top: 32%; left: 6%; animation-delay: 2.8s; }
-        .star:nth-child(9) { width: 5px; height: 5px; top: 55%; left: 90%; animation-delay: 3.2s; }
-        .star:nth-child(10) { width: 3px; height: 3px; top: 68%; left: 50%; animation-delay: 3.6s; }
-        .star:nth-child(11) { width: 6px; height: 6px; top: 20%; left: 22%; animation-delay: 0.2s; }
-        .star:nth-child(12) { width: 2px; height: 2px; top: 35%; left: 42%; animation-delay: 0.6s; }
-        .star:nth-child(13) { width: 4px; height: 4px; top: 48%; left: 10%; animation-delay: 1.0s; }
-        .star:nth-child(14) { width: 5px; height: 5px; top: 62%; left: 55%; animation-delay: 1.4s; }
-        .star:nth-child(15) { width: 3px; height: 3px; top: 78%; left: 72%; animation-delay: 1.8s; }
-        .star:nth-child(16) { width: 7px; height: 7px; top: 5%; left: 65%; animation-delay: 2.2s; }
-        .star:nth-child(17) { width: 2px; height: 2px; top: 15%; left: 90%; animation-delay: 2.6s; }
-        .star:nth-child(18) { width: 5px; height: 5px; top: 40%; left: 80%; animation-delay: 3.0s; }
-        .star:nth-child(19) { width: 4px; height: 4px; top: 52%; left: 28%; animation-delay: 3.4s; }
-        .star:nth-child(20) { width: 6px; height: 6px; top: 70%; left: 15%; animation-delay: 3.8s; }
-        .star:nth-child(21) { width: 3px; height: 3px; top: 82%; left: 48%; animation-delay: 0.3s; }
-        .star:nth-child(22) { width: 2px; height: 2px; top: 28%; left: 58%; animation-delay: 0.7s; }
-        .star:nth-child(23) { width: 5px; height: 5px; top: 10%; left: 32%; animation-delay: 1.1s; }
-        .star:nth-child(24) { width: 4px; height: 4px; top: 58%; left: 42%; animation-delay: 1.5s; }
-        .star:nth-child(25) { width: 6px; height: 6px; top: 75%; left: 5%; animation-delay: 1.9s; }
-
-        /* رنگ‌های مختلف ستاره‌ها */
-        .star:nth-child(odd) { background: white; box-shadow: 0 0 8px var(--pink), 0 0 16px var(--purple); }
-        .star:nth-child(even) { background: #f8d0e1; box-shadow: 0 0 8px var(--purple), 0 0 16px var(--pink); }
-        .star:nth-child(3n) { background: #ffffff; box-shadow: 0 0 10px #b388eb, 0 0 20px #ff80ab; }
-        .star:nth-child(5n+1) { background: #f5e0ff; box-shadow: 0 0 8px #d4b8f0, 0 0 16px #ff80ab; }
-
-        /* سیاره‌ها (حلقه‌دار) */
-        .planet:nth-child(26) { top: 18%; left: 28%; animation-delay: 0s; }
-        .planet:nth-child(27) { top: 62%; left: 72%; animation-delay: 1.5s; }
-        .planet:nth-child(28) { top: 40%; left: 15%; animation-delay: 3s; }
-        .planet:nth-child(29) { top: 80%; left: 55%; animation-delay: 4.5s; }
-        .planet:nth-child(30) { top: 5%; left: 85%; animation-delay: 6s; }
 
         @keyframes twinkle {
             0%, 100% { opacity: 0.6; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.4); }
-        }
-
-        @keyframes orbit {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
-            50% { transform: translate(20px, -20px) rotate(180deg); opacity: 1; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.6; }
         }
 
         .container {
@@ -183,7 +93,6 @@
             align-items: center;
         }
 
-        /* لوگو + نت (بدون خطوط) */
         .logo-area {
             display: flex;
             align-items: center;
@@ -216,7 +125,6 @@
             transform: rotate(-2deg);
         }
 
-        /* لیست آهنگ */
         .song-list {
             width: 100%;
             margin-bottom: 110px;
@@ -300,7 +208,6 @@
             fill: var(--black);
         }
 
-        /* پلیر */
         .player-container {
             position: fixed;
             bottom: 20px;
@@ -406,7 +313,6 @@
             font-weight: 300;
         }
 
-        /* گرامافون بدون بازو با نور */
         .vinyl-graphic {
             width: 44px;
             height: 44px;
@@ -438,26 +344,88 @@
     </style>
 </head>
 <body>
-    <!-- کهکشان -->
     <div class="galaxy"></div>
 
-    <!-- ستاره‌های واقعی (۲۵ عدد) + سیارات حلقه‌دار (۵ عدد) -->
+    <!-- ۷۰ ستاره با رنگ‌های صورتی و بنفش کمرنگ (سیارات حذف شدند) -->
     <div class="stars-container">
-        <div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div><div class="star"></div>
-        <div class="star"></div><div class="star"></div>
-        <div class="planet"></div><div class="planet"></div><div class="planet"></div>
-        <div class="planet"></div><div class="planet"></div>
+        <!-- ستاره ۱ -->
+        <div class="star" style="top:5%; left:8%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0s;"></div>
+        <div class="star" style="top:12%; left:18%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:0.2s;"></div>
+        <div class="star" style="top:22%; left:28%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.4s;"></div>
+        <div class="star" style="top:8%; left:38%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:0.6s;"></div>
+        <div class="star" style="top:18%; left:48%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:0.8s;"></div>
+        <div class="star" style="top:30%; left:58%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:1.0s;"></div>
+        <div class="star" style="top:15%; left:68%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.2s;"></div>
+        <div class="star" style="top:25%; left:78%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.4s;"></div>
+        <div class="star" style="top:35%; left:88%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.6s;"></div>
+        <div class="star" style="top:42%; left:5%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:1.8s;"></div>
+        <div class="star" style="top:48%; left:15%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.0s;"></div>
+        <div class="star" style="top:55%; left:25%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:2.2s;"></div>
+        <div class="star" style="top:62%; left:35%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.4s;"></div>
+        <div class="star" style="top:70%; left:45%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:2.6s;"></div>
+        <div class="star" style="top:75%; left:55%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:2.8s;"></div>
+        <div class="star" style="top:82%; left:65%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:3.0s;"></div>
+        <div class="star" style="top:88%; left:75%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.2s;"></div>
+        <div class="star" style="top:92%; left:85%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:3.4s;"></div>
+        <div class="star" style="top:3%; left:92%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.6s;"></div>
+        <div class="star" style="top:20%; left:95%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:3.8s;"></div>
+        <!-- ستاره‌های ردیف دوم -->
+        <div class="star" style="top:6%; left:12%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.1s;"></div>
+        <div class="star" style="top:14%; left:22%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:0.3s;"></div>
+        <div class="star" style="top:24%; left:32%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.5s;"></div>
+        <div class="star" style="top:33%; left:42%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:0.7s;"></div>
+        <div class="star" style="top:40%; left:52%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:0.9s;"></div>
+        <div class="star" style="top:50%; left:62%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.1s;"></div>
+        <div class="star" style="top:58%; left:72%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.3s;"></div>
+        <div class="star" style="top:65%; left:82%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:1.5s;"></div>
+        <div class="star" style="top:72%; left:8%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.7s;"></div>
+        <div class="star" style="top:80%; left:18%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.9s;"></div>
+        <div class="star" style="top:85%; left:28%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.1s;"></div>
+        <div class="star" style="top:90%; left:38%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:2.3s;"></div>
+        <div class="star" style="top:95%; left:48%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.5s;"></div>
+        <div class="star" style="top:2%; left:55%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:2.7s;"></div>
+        <div class="star" style="top:10%; left:65%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:2.9s;"></div>
+        <div class="star" style="top:17%; left:75%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:3.1s;"></div>
+        <div class="star" style="top:28%; left:85%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.3s;"></div>
+        <div class="star" style="top:36%; left:3%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:3.5s;"></div>
+        <div class="star" style="top:44%; left:92%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.7s;"></div>
+        <div class="star" style="top:52%; left:10%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:3.9s;"></div>
+        <!-- ستاره‌های ردیف سوم (ادامه) -->
+        <div class="star" style="top:60%; left:20%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.15s;"></div>
+        <div class="star" style="top:68%; left:30%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:0.35s;"></div>
+        <div class="star" style="top:76%; left:40%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.55s;"></div>
+        <div class="star" style="top:84%; left:50%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:0.75s;"></div>
+        <div class="star" style="top:91%; left:60%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:0.95s;"></div>
+        <div class="star" style="top:97%; left:70%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.15s;"></div>
+        <div class="star" style="top:4%; left:80%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.35s;"></div>
+        <div class="star" style="top:13%; left:90%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:1.55s;"></div>
+        <div class="star" style="top:23%; left:2%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.75s;"></div>
+        <div class="star" style="top:31%; left:14%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.95s;"></div>
+        <div class="star" style="top:39%; left:24%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.15s;"></div>
+        <div class="star" style="top:47%; left:34%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:2.35s;"></div>
+        <div class="star" style="top:54%; left:44%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:2.55s;"></div>
+        <div class="star" style="top:63%; left:54%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:2.75s;"></div>
+        <div class="star" style="top:71%; left:64%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:2.95s;"></div>
+        <div class="star" style="top:79%; left:74%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:3.15s;"></div>
+        <div class="star" style="top:87%; left:84%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.35s;"></div>
+        <div class="star" style="top:93%; left:7%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:3.55s;"></div>
+        <div class="star" style="top:1%; left:17%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:3.75s;"></div>
+        <div class="star" style="top:9%; left:27%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:3.95s;"></div>
+        <!-- ۱۰ ستاره باقیمانده -->
+        <div class="star" style="top:19%; left:37%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.25s;"></div>
+        <div class="star" style="top:27%; left:47%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:0.45s;"></div>
+        <div class="star" style="top:37%; left:57%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:0.65s;"></div>
+        <div class="star" style="top:45%; left:67%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:0.85s;"></div>
+        <div class="star" style="top:53%; left:77%; width:6px; height:6px; background:#ff80ab; box-shadow:0 0 10px #ff80ab; animation-delay:1.05s;"></div>
+        <div class="star" style="top:61%; left:87%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:1.25s;"></div>
+        <div class="star" style="top:69%; left:4%; width:4px; height:4px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.45s;"></div>
+        <div class="star" style="top:77%; left:16%; width:3px; height:3px; background:#d1b3e0; box-shadow:0 0 6px #d1b3e0; animation-delay:1.65s;"></div>
+        <div class="star" style="top:86%; left:26%; width:5px; height:5px; background:#ff80ab; box-shadow:0 0 8px #ff80ab; animation-delay:1.85s;"></div>
+        <div class="star" style="top:94%; left:36%; width:2px; height:2px; background:#d1b3e0; box-shadow:0 0 5px #d1b3e0; animation-delay:2.05s;"></div>
     </div>
 
     <div class="container">
         <div class="logo-area">
-            <!-- نت موسیقی رقصان -->
             <div class="music-note">
                 <svg viewBox="0 0 100 100" fill="none">
                     <path d="M40 20 L40 70 C40 78, 30 85, 25 85 C17 85, 12 78, 12 70 C12 62, 17 55, 25 55 C28 55, 30 57, 32 60 L32 30 L70 20 L70 60 C70 68, 60 75, 55 75 C47 75, 42 68, 42 60 C42 52, 47 45, 55 45 C58 45, 60 47, 62 50 L62 20 Z" fill="url(#gradPinkPurple)"/>
