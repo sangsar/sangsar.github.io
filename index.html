@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samisaki Music</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Samisaki</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,11 +13,7 @@
         }
 
         body {
-            background: #0B0B0C;
-            background-image: 
-                radial-gradient(ellipse at 20% 10%, rgba(180, 130, 40, 0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 90%, rgba(140, 20, 40, 0.1) 0%, transparent 60%),
-                radial-gradient(ellipse at 50% 50%, rgba(20, 20, 20, 1) 0%, #0B0B0C 100%);
+            background: #08080A;
             color: #D4AF37;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
@@ -28,7 +24,7 @@
             position: relative;
         }
 
-        /* ذرات طلایی شناور */
+        /* لایه‌های پس‌زمینهٔ لوکس */
         body::before {
             content: "";
             position: fixed;
@@ -36,113 +32,126 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 10% 20%, rgba(212,175,55,0.5), transparent),
-                radial-gradient(1px 1px at 85% 15%, rgba(212,175,55,0.4), transparent),
-                radial-gradient(2px 2px at 70% 65%, rgba(212,175,55,0.3), transparent),
-                radial-gradient(1px 1px at 30% 80%, rgba(212,175,55,0.4), transparent),
-                radial-gradient(1px 1px at 15% 60%, rgba(212,175,55,0.2), transparent),
-                radial-gradient(2px 2px at 90% 85%, rgba(212,175,55,0.5), transparent),
-                radial-gradient(1px 1px at 45% 15%, rgba(212,175,55,0.3), transparent),
-                radial-gradient(1px 1px at 60% 40%, rgba(212,175,55,0.2), transparent);
+            background:
+                /* خطوط عمودی طلایی محو */
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(212, 175, 55, 0.04) 60px,
+                    rgba(212, 175, 55, 0.04) 62px
+                ),
+                /* هاله‌های درخشان */
+                radial-gradient(ellipse at 15% 20%, rgba(212, 175, 55, 0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 80%, rgba(180, 130, 40, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 10%, rgba(140, 20, 40, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at 60% 90%, rgba(100, 80, 20, 0.12) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
-            animation: sparkle 5s ease-in-out infinite alternate;
+        }
+
+        /* ذرات طلایی شناور */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(3px 3px at 12% 28%, rgba(212, 175, 55, 0.7), transparent),
+                radial-gradient(2px 2px at 82% 18%, rgba(255, 240, 200, 0.6), transparent),
+                radial-gradient(2px 2px at 68% 72%, rgba(212, 175, 55, 0.5), transparent),
+                radial-gradient(3px 3px at 32% 82%, rgba(254, 240, 192, 0.6), transparent),
+                radial-gradient(1px 1px at 10% 58%, rgba(212, 175, 55, 0.4), transparent),
+                radial-gradient(2px 2px at 88% 85%, rgba(212, 175, 55, 0.5), transparent),
+                radial-gradient(1px 1px at 45% 12%, rgba(255, 240, 200, 0.4), transparent),
+                radial-gradient(2px 2px at 55% 40%, rgba(212, 175, 55, 0.3), transparent);
+            background-size: 300px 300px;
+            pointer-events: none;
+            z-index: 0;
+            animation: sparkle 6s ease-in-out infinite alternate;
         }
 
         @keyframes sparkle {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0.6;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-8px);
+            }
+        }
+
+        /* حاشیهٔ طلایی دور صفحه */
+        .gold-border {
+            position: fixed;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 4px;
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.1), 0 0 30px rgba(212, 175, 55, 0.1);
         }
 
         .container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 800px;
-            padding: 0 20px;
+            max-width: 750px;
+            padding: 0 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* لوگوی موزیکال */
-        .logo-section {
-            margin-top: 50px;
-            text-align: center;
-            position: relative;
+        /* لوگو */
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #FEF0C0;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.7), 0 0 10px #000, 0 0 60px rgba(212, 175, 55, 0.3);
+            letter-spacing: 4px;
+            margin-top: 60px;
+            margin-bottom: 50px;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease, text-shadow 0.3s;
         }
 
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .logo-music-icon {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0 0 15px #D4AF37);
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(180deg, #FEF0C0 0%, #D4AF37 35%, #B8860B 70%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.8));
-            letter-spacing: 10px;
-            line-height: 1;
-        }
-
-        .logo-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: #D4AF37;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-top: 5px;
-            opacity: 0.8;
-        }
-
-        .logo-underline {
-            width: 200px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #D4AF37, #FEF0C0, #D4AF37, transparent);
-            margin: 15px auto 20px;
-            border-radius: 3px;
-            box-shadow: 0 0 20px #D4AF37;
+        .logo:hover {
+            transform: rotate(0deg) scale(1.05);
+            text-shadow: 0 0 40px rgba(254, 240, 192, 1), 0 0 80px rgba(212, 175, 55, 0.5);
         }
 
         /* لیست آهنگ‌ها */
         .song-list {
             width: 100%;
-            margin: 20px 0 140px;
+            margin-bottom: 120px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .song-item {
-            background: rgba(15, 15, 15, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-left: 5px solid #D4AF37;
-            border-radius: 12px;
-            padding: 16px 22px;
+            background: rgba(12, 12, 16, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 14px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .song-item::after {
@@ -152,17 +161,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 60%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, transparent 50%);
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .song-item:hover {
-            transform: translateY(-4px);
-            border-left-color: #FEF0C0;
-            border-left-width: 8px;
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212,175,55,0.5);
-            background: rgba(20, 20, 20, 0.8);
+            border-color: #FEF0C0;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+            background: rgba(18, 18, 22, 0.8);
         }
 
         .song-item:hover::after {
@@ -177,25 +185,24 @@
 
         .song-title {
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-weight: 600;
+            font-size: 1.45rem;
             color: #fff;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
         }
 
         .song-artist {
             font-weight: 400;
-            color: #D4AF37;
-            font-size: 0.95rem;
+            color: #C9A84C;
+            font-size: 0.9rem;
             font-style: italic;
-            opacity: 0.9;
         }
 
         /* دکمه پخش */
-        .play-btn {
-            width: 46px;
-            height: 46px;
+        .play-circle {
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 2px solid #D4AF37;
             background: transparent;
@@ -208,297 +215,176 @@
             flex-shrink: 0;
         }
 
-        .play-btn svg {
-            width: 20px;
-            height: 20px;
+        .play-circle svg {
+            width: 18px;
+            height: 18px;
             fill: #D4AF37;
             transition: fill 0.3s;
         }
 
-        .play-btn:hover {
+        .play-circle:hover {
             background: #D4AF37;
             box-shadow: 0 0 25px #D4AF37;
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
-        .play-btn:hover svg {
-            fill: #0B0B0C;
+        .play-circle:hover svg {
+            fill: #08080A;
         }
 
-        /* پلیر پایین صفحه */
+        /* پلیر جمع‌وجور */
         .player-container {
             position: fixed;
-            bottom: 25px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 40px);
-            max-width: 700px;
-            background: rgba(8, 8, 8, 0.9);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1.5px solid rgba(212, 175, 55, 0.5);
-            border-radius: 20px;
-            padding: 18px 22px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25), inset 0 0 30px rgba(212, 175, 55, 0.03);
+            max-width: 600px;
+            background: rgba(10, 10, 12, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            border-radius: 30px;
+            padding: 12px 20px;
             display: none;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25), 0 0 80px rgba(0, 0, 0, 0.6);
             z-index: 1000;
-            transition: all 0.3s ease;
         }
 
         .player-container.active {
             display: flex;
-            flex-direction: column;
-        }
-
-        .now-playing {
-            color: #fff;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: 400;
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
 
         .play-pause-btn {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 2px solid #D4AF37;
             color: #D4AF37;
-            font-size: 1.8rem;
-            width: 48px;
-            height: 48px;
+            font-size: 1.6rem;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .play-pause-btn:hover {
             background: #D4AF37;
-            color: #0B0B0C;
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.8);
+            color: #08080A;
+            box-shadow: 0 0 20px #D4AF37;
         }
 
         .progress-container {
             flex: 1;
-            height: 8px;
-            background: #2A2A2A;
-            border-radius: 4px;
+            height: 6px;
+            background: #2A2A2E;
+            border-radius: 3px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 3px #000;
         }
 
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #D4AF37, #FEF0C0);
             width: 0%;
-            border-radius: 4px;
-            position: relative;
+            border-radius: 3px;
+            box-shadow: 0 0 10px #D4AF37;
             transition: width 0.1s linear;
-            box-shadow: 0 0 12px #D4AF37;
         }
 
-        .progress-bar::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translate(50%, -50%);
-            width: 14px;
-            height: 14px;
-            background: #FEF0C0;
+        /* وینیل کوچک */
+        .mini-vinyl {
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            box-shadow: 0 0 15px #D4AF37, 0 0 5px #fff;
-        }
-
-        .time {
-            color: #D4AF37;
-            font-size: 0.85rem;
-            min-width: 95px;
-            text-align: right;
-            letter-spacing: 0.5px;
-            font-weight: 300;
-        }
-
-        /* گرامافون */
-        .vinyl-container {
-            position: relative;
-            width: 65px;
-            height: 65px;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 18%, #1a1a1a 19%, #1a1a1a 32%, #333 33%, #0a0a0a 34%, #0a0a0a 100%);
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
             flex-shrink: 0;
+            animation: spin 2.5s linear infinite paused;
         }
 
-        .vinyl-record {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, #0B0B0C 10%, #1A1A1A 11%, #1A1A1A 25%, #333 26%, #0B0B0C 27%, #0B0B0C 100%);
-            border: 2.5px solid #D4AF37;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), inset 0 0 20px rgba(0,0,0,0.9);
-            position: relative;
-            animation: spin 3s linear infinite paused;
-        }
-
-        .vinyl-record.spinning {
+        .mini-vinyl.spinning {
             animation-play-state: running;
-        }
-
-        .vinyl-record::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 15px;
-            height: 15px;
-            background: radial-gradient(circle, #FEF0C0 25%, #B8860B 80%);
-            border-radius: 50%;
-            box-shadow: 0 0 15px #D4AF37, 0 0 25px #D4AF37;
-        }
-
-        .tonearm {
-            position: absolute;
-            top: 2px;
-            right: -22px;
-            width: 35px;
-            height: 58px;
-            transform-origin: top right;
-            transform: rotate(15deg);
-            transition: transform 0.3s;
-        }
-
-        .tonearm .base {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #666;
-            border-radius: 50%;
-            box-shadow: 0 0 6px #000;
-        }
-
-        .tonearm .arm {
-            position: absolute;
-            top: 12px;
-            right: 5px;
-            width: 3px;
-            height: 38px;
-            background: #999;
-            border-radius: 2px;
-            transform: rotate(-12deg);
-            transform-origin: top right;
-            box-shadow: 0 0 4px #000;
-        }
-
-        .tonearm .head {
-            position: absolute;
-            top: 46px;
-            right: -3px;
-            width: 14px;
-            height: 8px;
-            background: #CCC;
-            border-radius: 2px;
-            transform: rotate(12deg);
-            box-shadow: 0 0 5px #000;
         }
 
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
 
+        .time {
+            color: #D4AF37;
+            font-size: 0.8rem;
+            min-width: 80px;
+            text-align: right;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
-            .logo-text {
-                font-size: 3rem;
-                letter-spacing: 6px;
+            .gold-border {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
             }
-            .logo-music-icon {
-                width: 45px;
-                height: 45px;
+            .logo {
+                font-size: 2.8rem;
+                margin-top: 50px;
+                margin-bottom: 40px;
             }
             .song-title {
                 font-size: 1.3rem;
             }
-            .song-item {
-                padding: 14px 18px;
-            }
             .player-container {
-                bottom: 15px;
-                padding: 14px 16px;
-                border-radius: 16px;
-            }
-            .controls {
+                bottom: 18px;
+                padding: 10px 15px;
                 gap: 10px;
+                border-radius: 24px;
             }
             .play-pause-btn {
-                width: 42px;
-                height: 42px;
-                font-size: 1.5rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1.4rem;
             }
-            .vinyl-container {
-                width: 50px;
-                height: 50px;
+            .mini-vinyl {
+                width: 30px;
+                height: 30px;
             }
             .time {
-                min-width: 80px;
-                font-size: 0.75rem;
+                min-width: 70px;
+                font-size: 0.7rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="gold-border"></div>
+
     <div class="container">
-        <!-- لوگوی موزیکال -->
-        <div class="logo-section">
-            <div class="logo-wrapper">
-                <svg class="logo-music-icon" viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="50" r="48" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.6"/>
-                    <circle cx="50" cy="50" r="40" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.3"/>
-                    <path d="M38 70V35L68 28V60" stroke="#D4AF37" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <circle cx="35" cy="70" r="8" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
-                    <circle cx="65" cy="60" r="8" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
-                    <path d="M68 28L38 35" stroke="#FEF0C0" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
-                </svg>
-                <div class="logo-text">SAMISAKI</div>
-            </div>
-            <div class="logo-subtitle">music</div>
-            <div class="logo-underline"></div>
-        </div>
+        <!-- لوگوی ایتالیک فرانسوی -->
+        <div class="logo">Samisaki</div>
 
         <!-- لیست آهنگ‌ها -->
         <div class="song-list" id="songList"></div>
 
-        <!-- پلیر -->
+        <!-- پلیر جمع‌وجور -->
         <div class="player-container" id="playerContainer">
-            <div class="now-playing" id="nowPlaying">Select a song</div>
-            <div class="controls">
-                <button class="play-pause-btn" id="playPauseBtn">▶️</button>
-                <div class="progress-container" id="progressContainer">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-                <span class="time" id="timeDisplay">00:00 / 00:00</span>
-                <div class="vinyl-container">
-                    <div class="vinyl-record" id="vinylRecord"></div>
-                    <div class="tonearm">
-                        <div class="base"></div>
-                        <div class="arm"></div>
-                        <div class="head"></div>
-                    </div>
-                </div>
+            <button class="play-pause-btn" id="playPauseBtn">▶️</button>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
+            <span class="time" id="timeDisplay">00:00 / 00:00</span>
+            <div class="mini-vinyl" id="miniVinyl"></div>
         </div>
     </div>
 
@@ -522,9 +408,8 @@
         const progressBar = document.getElementById('progressBar');
         const progressContainer = document.getElementById('progressContainer');
         const timeDisplay = document.getElementById('timeDisplay');
-        const nowPlaying = document.getElementById('nowPlaying');
         const playerContainer = document.getElementById('playerContainer');
-        const vinylRecord = document.getElementById('vinylRecord');
+        const miniVinyl = document.getElementById('miniVinyl');
         let currentSongIndex = -1;
 
         function formatTime(s) {
@@ -537,10 +422,9 @@
         function loadSong(index) {
             audio.src = songs[index].url;
             audio.load();
-            nowPlaying.textContent = `${songs[index].title} - ${songs[index].artist}`;
             playerContainer.classList.add('active');
             playPauseBtn.textContent = '▶️';
-            vinylRecord.classList.remove('spinning');
+            miniVinyl.classList.remove('spinning');
             progressBar.style.width = '0%';
             timeDisplay.textContent = '00:00 / 00:00';
             currentSongIndex = index;
@@ -550,11 +434,11 @@
             if (audio.paused) {
                 audio.play();
                 playPauseBtn.textContent = '⏸️';
-                vinylRecord.classList.add('spinning');
+                miniVinyl.classList.add('spinning');
             } else {
                 audio.pause();
                 playPauseBtn.textContent = '▶️';
-                vinylRecord.classList.remove('spinning');
+                miniVinyl.classList.remove('spinning');
             }
         }
 
@@ -566,7 +450,7 @@
 
         audio.addEventListener('ended', () => {
             playPauseBtn.textContent = '▶️';
-            vinylRecord.classList.remove('spinning');
+            miniVinyl.classList.remove('spinning');
             progressBar.style.width = '0%';
         });
 
@@ -588,17 +472,17 @@
                     <span class="song-title">${s.title}</span>
                     <span class="song-artist">${s.artist}</span>
                 </div>
-                <div class="play-btn">
+                <div class="play-circle">
                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
             `;
-            item.querySelector('.play-btn').addEventListener('click', (e) => {
+            item.querySelector('.play-circle').addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (currentSongIndex === i) {
-                    if (audio.paused) { audio.play(); playPauseBtn.textContent = '⏸️'; vinylRecord.classList.add('spinning'); }
-                    else { audio.pause(); playPauseBtn.textContent = '▶️'; vinylRecord.classList.remove('spinning'); }
+                    if (audio.paused) { audio.play(); playPauseBtn.textContent = '⏸️'; miniVinyl.classList.add('spinning'); }
+                    else { audio.pause(); playPauseBtn.textContent = '▶️'; miniVinyl.classList.remove('spinning'); }
                 } else {
-                    loadSong(i); audio.play(); playPauseBtn.textContent = '⏸️'; vinylRecord.classList.add('spinning');
+                    loadSong(i); audio.play(); playPauseBtn.textContent = '⏸️'; miniVinyl.classList.add('spinning');
                 }
             });
             listEl.appendChild(item);
