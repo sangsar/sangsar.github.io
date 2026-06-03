@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samisaki Music</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #0a0a0a;
+            background: radial-gradient(ellipse at 50% 0%, #1a1a1a 0%, #0a0a0a 70%);
             color: #d4af37;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
@@ -21,122 +21,201 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* لوگو و عروسک */
-        .logo-container {
-            margin-top: 30px;
+        /* ذرات طلایی پس‌زمینه */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 800px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 20px;
+        }
+
+        /* لوگو */
+        .logo-section {
+            margin-top: 50px;
+            text-align: center;
         }
 
         .logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #d4af37;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-            letter-spacing: 3px;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #f9d976 0%, #d4af37 40%, #b8860b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+            letter-spacing: 6px;
+            margin-bottom: 10px;
         }
 
-        .doll {
-            font-size: 4rem;
-            animation: dance 1s infinite alternate ease-in-out;
-            filter: drop-shadow(0 0 10px #d4af37);
+        .logo-underline {
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+            margin: 0 auto;
+            border-radius: 3px;
+            box-shadow: 0 0 15px #d4af37;
+        }
+
+        /* شخصیت مانگای رقصان */
+        .manga-girl {
+            font-size: 3.5rem;
+            display: inline-block;
+            animation: dance 1.2s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 15px #d4af37);
+            margin: 20px 0 10px;
+            cursor: default;
+            user-select: none;
         }
 
         @keyframes dance {
-            0% { transform: rotate(-5deg) translateY(0); }
-            100% { transform: rotate(5deg) translateY(-10px); }
+            0% {
+                transform: translateY(0) rotate(-3deg) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) rotate(0deg) scale(1.05);
+            }
+            100% {
+                transform: translateY(0) rotate(3deg) scale(1);
+            }
         }
 
         /* لیست آهنگ‌ها */
         .song-list {
-            width: 90%;
-            max-width: 700px;
-            margin: 40px 0 100px 0;
+            width: 100%;
+            margin: 30px 0 120px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
+            padding: 0 20px;
         }
 
         .song-item {
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #d4af37;
-            border-radius: 12px;
-            padding: 15px 20px;
+            background: rgba(15, 15, 15, 0.85);
+            border-left: 4px solid #d4af37;
+            border-radius: 10px;
+            padding: 18px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .song-item::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .song-item:hover {
-            background: rgba(212, 175, 55, 0.15);
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+            border-left-width: 6px;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .song-item:hover::after {
+            opacity: 1;
         }
 
         .song-info {
             display: flex;
             flex-direction: column;
+            z-index: 1;
         }
 
         .song-title {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #fff;
+            letter-spacing: 0.5px;
         }
 
         .song-artist {
             font-weight: 300;
-            color: #b8860b;
+            color: #d4af37;
             font-size: 0.9rem;
+            margin-top: 3px;
         }
 
         .play-icon {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #d4af37;
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+
+        .song-item:hover .play-icon {
+            transform: scale(1.2);
         }
 
         /* پلیر مخفی پایین صفحه */
         .player-container {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            max-width: 600px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 1px solid #d4af37;
-            border-radius: 15px;
-            padding: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-            display: none; /* مخفی در ابتدا */
+            max-width: 650px;
+            background: rgba(10, 10, 10, 0.92);
+            border: 1.5px solid #d4af37;
+            border-radius: 20px;
+            padding: 20px 25px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            display: none;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .player-container.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .now-playing {
             color: #fff;
-            margin-bottom: 8px;
             font-size: 0.9rem;
+            margin-bottom: 12px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            opacity: 0.9;
         }
 
         .controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .play-pause-btn {
@@ -144,88 +223,170 @@
             border: 2px solid #d4af37;
             color: #d4af37;
             font-size: 1.8rem;
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
         .play-pause-btn:hover {
             background: #d4af37;
             color: #0a0a0a;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
         }
 
         .progress-container {
             flex: 1;
-            height: 6px;
-            background: #333;
-            border-radius: 3px;
+            height: 8px;
+            background: #2a2a2a;
+            border-radius: 4px;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
         }
 
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #d4af37, #ffd700);
             width: 0%;
-            border-radius: 3px;
+            border-radius: 4px;
+            position: relative;
             transition: width 0.1s linear;
+            box-shadow: 0 0 10px #d4af37;
+        }
+
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(50%, -50%);
+            width: 14px;
+            height: 14px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #d4af37;
         }
 
         .time {
             color: #d4af37;
-            font-size: 0.8rem;
-            min-width: 80px;
+            font-size: 0.85rem;
+            min-width: 100px;
             text-align: right;
+            letter-spacing: 0.5px;
         }
 
-        .gramophone {
-            font-size: 2rem;
-            animation: spin 2s linear infinite;
-            display: none;
+        /* گرامافون (وینیل) */
+        .vinyl-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
         }
 
-        .gramophone.spinning {
-            display: inline-block;
+        .vinyl-record {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 15%, #1a1a1a 16%, #1a1a1a 30%, #333 31%, #0a0a0a 32%, #0a0a0a 100%);
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.8);
+            position: relative;
+            animation: spin 3s linear infinite paused;
+        }
+
+        .vinyl-record.spinning {
+            animation-play-state: running;
+        }
+
+        .vinyl-record::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 15px;
+            height: 15px;
+            background: #d4af37;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37;
+        }
+
+        .vinyl-record::after {
+            content: "";
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255,255,255,0.1);
         }
 
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo-text {
+                font-size: 3rem;
+                letter-spacing: 4px;
+            }
+            .controls {
+                gap: 12px;
+            }
+            .vinyl-container {
+                width: 45px;
+                height: 45px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- لوگو -->
+        <div class="logo-section">
+            <div class="logo-text">SAMISAKI</div>
+            <div class="logo-underline"></div>
+        </div>
 
-    <!-- لوگو و عروسک -->
-    <div class="logo-container">
-        <span class="doll">🧸</span>
-        <div class="logo-text">SAMISAKI</div>
-    </div>
+        <!-- شخصیت مانگای ژاپنی رقصان -->
+        <div class="manga-girl" title="♪(๑ᴖ◡ᴖ๑)♪">
+            ☆*:.｡. o(≧▽≦)o .｡.:*☆
+        </div>
 
-    <!-- لیست آهنگ‌ها -->
-    <div class="song-list" id="songList"></div>
+        <!-- لیست آهنگ‌ها -->
+        <div class="song-list" id="songList"></div>
 
-    <!-- پلیر مخفی -->
-    <div class="player-container" id="playerContainer">
-        <div class="now-playing" id="nowPlaying">Select a song</div>
-        <div class="controls">
-            <button class="play-pause-btn" id="playPauseBtn">▶️</button>
-            <div class="progress-container" id="progressContainer">
-                <div class="progress-bar" id="progressBar"></div>
+        <!-- پلیر مخفی -->
+        <div class="player-container" id="playerContainer">
+            <div class="now-playing" id="nowPlaying">Select a song</div>
+            <div class="controls">
+                <button class="play-pause-btn" id="playPauseBtn">▶️</button>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <span class="time" id="timeDisplay">00:00 / 00:00</span>
+                <div class="vinyl-container">
+                    <div class="vinyl-record" id="vinylRecord"></div>
+                </div>
             </div>
-            <span class="time" id="timeDisplay">00:00 / 00:00</span>
-            <span class="gramophone" id="gramophoneIcon">🎵</span>
         </div>
     </div>
 
     <audio id="audioPlayer"></audio>
 
     <script>
-        // لیست آهنگ‌ها به ترتیب
+        // لیست آهنگ‌ها به ترتیب خواسته شده (بدون تغییر)
         const songs = [
             {
                 title: "Bin Jip (3-Iron)",
@@ -281,7 +442,7 @@
         const timeDisplay = document.getElementById('timeDisplay');
         const nowPlaying = document.getElementById('nowPlaying');
         const playerContainer = document.getElementById('playerContainer');
-        const gramophoneIcon = document.getElementById('gramophoneIcon');
+        const vinylRecord = document.getElementById('vinylRecord');
         let currentSongIndex = -1;
 
         function formatTime(seconds) {
@@ -297,7 +458,7 @@
             nowPlaying.textContent = `${songs[index].title} - ${songs[index].artist}`;
             playerContainer.classList.add('active');
             playPauseBtn.textContent = '▶️';
-            gramophoneIcon.classList.remove('spinning');
+            vinylRecord.classList.remove('spinning');
             progressBar.style.width = '0%';
             timeDisplay.textContent = '00:00 / 00:00';
             currentSongIndex = index;
@@ -307,11 +468,11 @@
             if (audio.paused) {
                 audio.play();
                 playPauseBtn.textContent = '⏸️';
-                gramophoneIcon.classList.add('spinning');
+                vinylRecord.classList.add('spinning');
             } else {
                 audio.pause();
                 playPauseBtn.textContent = '▶️';
-                gramophoneIcon.classList.remove('spinning');
+                vinylRecord.classList.remove('spinning');
             }
         }
 
@@ -323,7 +484,7 @@
 
         audio.addEventListener('ended', () => {
             playPauseBtn.textContent = '▶️';
-            gramophoneIcon.classList.remove('spinning');
+            vinylRecord.classList.remove('spinning');
             progressBar.style.width = '0%';
         });
 
@@ -351,21 +512,20 @@
             `;
             item.addEventListener('click', () => {
                 if (currentSongIndex === index) {
-                    // اگر همون آهنگ کلیک شد، فقط پخش/توقف
                     if (audio.paused) {
                         audio.play();
                         playPauseBtn.textContent = '⏸️';
-                        gramophoneIcon.classList.add('spinning');
+                        vinylRecord.classList.add('spinning');
                     } else {
                         audio.pause();
                         playPauseBtn.textContent = '▶️';
-                        gramophoneIcon.classList.remove('spinning');
+                        vinylRecord.classList.remove('spinning');
                     }
                 } else {
                     loadSong(index);
                     audio.play();
                     playPauseBtn.textContent = '⏸️';
-                    gramophoneIcon.classList.add('spinning');
+                    vinylRecord.classList.add('spinning');
                 }
             });
             songListEl.appendChild(item);
