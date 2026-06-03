@@ -1,1 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samisaki Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: #0a0a0a;
+            color: #d4af37;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* لوگو و عروسک */
+        .logo-container {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .doll {
+            font-size: 4rem;
+            animation: dance 1s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 10px #d4af37);
+        }
+
+        @keyframes dance {
+            0% { transform: rotate(-5deg) translateY(0); }
+            100% { transform: rotate(5deg) translateY(-10px); }
+        }
+
+        /* لیست آهنگ‌ها */
+        .song-list {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px 0 100px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .song-item {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #d4af37;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .song-item:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .song-artist {
+            font-weight: 300;
+            color: #b8860b;
+            font-size: 0.9rem;
+        }
+
+        .play-icon {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        /* پلیر مخفی پایین صفحه */
+        .player-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #d4af37;
+            border-radius: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            display: none; /* مخفی در ابتدا */
+            z-index: 1000;
+        }
+
+        .player-container.active {
+            display: block;
+        }
+
+        .now-playing {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .play-pause-btn {
+            background: none;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            font-size: 1.8rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .play-pause-btn:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        .time {
+            color: #d4af37;
+            font-size: 0.8rem;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .gramophone {
+            font-size: 2rem;
+            animation: spin 2s linear infinite;
+            display: none;
+        }
+
+        .gramophone.spinning {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- لوگو و عروسک -->
+    <div class="logo-container">
+        <span class="doll">🧸</span>
+        <div class="logo-text">SAMISAKI</div>
+    </div>
+
+    <!-- لیست آهنگ‌ها -->
+    <div class="song-list" id="songList"></div>
+
+    <!-- پلیر مخفی -->
+    <div class="player-container" id="playerContainer">
+        <div class="now-playing" id="nowPlaying">Select a song</div>
+        <div class="controls">
+            <button class="play-pause-btn" id="playPauseBtn">▶️</button>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <span class="time" id="timeDisplay">00:00 / 00:00</span>
+            <span class="gramophone" id="gramophoneIcon">🎵</span>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+    <script>
+        // لیست آهنگ‌ها به ترتیب
+        const songs = [
+            {
+                title: "Bin Jip (3-Iron)",
+                artist: "Natacha Atlas - Slvian",
+                url: "https://dl.ritmahang.com/audio/arshive/natacha%20atlas%20-%20bin-jip%20(3-iron)%20ost%202004%20-%20slvian%20(www.delshekastegan.ir).mp3"
+            },
+            {
+                title: "Maison",
+                artist: "Emilio Piano x Lucie",
+                url: "https://dl.musicviral.ir/Music/04-04/Emilio%20Piano%20x%20Lucie%20-%20Maison.mp3"
+            },
+            {
+                title: "Summer Overture",
+                artist: "Summer (Requiem for a Dream)",
+                url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Summer-Overture-Summer.mp3"
+            },
+            {
+                title: "Lux Aeterna",
+                artist: "Winter (Requiem for a Dream)",
+                url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Lux-Aeterna-Winter.mp3"
+            },
+            {
+                title: "Roads",
+                artist: "Portishead",
+                url: "https://files.musicfeed.ir/2020/07/Portishead-Roads.mp3"
+            },
+            {
+                title: "Game of Thrones",
+                artist: "Ramin Djawadi",
+                url: "https://irsv.upmusics.com/Downloads/Musics/Ramin%20Djawadi%20%7C%20Game%20Of%20Thrones%20(320).mp3"
+            },
+            {
+                title: "Hostage",
+                artist: "Billie Eilish",
+                url: "https://sv.jenabmusic.com/music/2026/05/13/Billie-Eilish-Hostage.mp3"
+            },
+            {
+                title: "Bad Guy",
+                artist: "Billie Eilish",
+                url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20Bad%20Guy.Mp3"
+            },
+            {
+                title: "No Time To Die",
+                artist: "Billie Eilish",
+                url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20No%20Time%20To%20Die.Mp3"
+            }
+        ];
+
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const nowPlaying = document.getElementById('nowPlaying');
+        const playerContainer = document.getElementById('playerContainer');
+        const gramophoneIcon = document.getElementById('gramophoneIcon');
+        let currentSongIndex = -1;
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function loadSong(index) {
+            audio.src = songs[index].url;
+            audio.load();
+            nowPlaying.textContent = `${songs[index].title} - ${songs[index].artist}`;
+            playerContainer.classList.add('active');
+            playPauseBtn.textContent = '▶️';
+            gramophoneIcon.classList.remove('spinning');
+            progressBar.style.width = '0%';
+            timeDisplay.textContent = '00:00 / 00:00';
+            currentSongIndex = index;
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = '⏸️';
+                gramophoneIcon.classList.add('spinning');
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = '▶️';
+                gramophoneIcon.classList.remove('spinning');
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100 || 0;
+            progressBar.style.width = `${progress}%`;
+            timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+        });
+
+        audio.addEventListener('ended', () => {
+            playPauseBtn.textContent = '▶️';
+            gramophoneIcon.classList.remove('spinning');
+            progressBar.style.width = '0%';
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            const seekTime = (clickX / width) * audio.duration;
+            audio.currentTime = seekTime;
+        });
+
+        playPauseBtn.addEventListener('click', togglePlay);
+
+        // ساختن لیست آهنگ‌ها
+        const songListEl = document.getElementById('songList');
+        songs.forEach((song, index) => {
+            const item = document.createElement('div');
+            item.className = 'song-item';
+            item.innerHTML = `
+                <div class="song-info">
+                    <span class="song-title">${song.title}</span>
+                    <span class="song-artist">${song.artist}</span>
+                </div>
+                <span class="play-icon">▶️</span>
+            `;
+            item.addEventListener('click', () => {
+                if (currentSongIndex === index) {
+                    // اگر همون آهنگ کلیک شد، فقط پخش/توقف
+                    if (audio.paused) {
+                        audio.play();
+                        playPauseBtn.textContent = '⏸️';
+                        gramophoneIcon.classList.add('spinning');
+                    } else {
+                        audio.pause();
+                        playPauseBtn.textContent = '▶️';
+                        gramophoneIcon.classList.remove('spinning');
+                    }
+                } else {
+                    loadSong(index);
+                    audio.play();
+                    playPauseBtn.textContent = '⏸️';
+                    gramophoneIcon.classList.add('spinning');
+                }
+            });
+            songListEl.appendChild(item);
+        });
+    </script>
+</body>
+</html>
