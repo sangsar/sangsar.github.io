@@ -31,7 +31,6 @@
             position: relative;
         }
 
-        /* پس‌زمینهٔ فوق‌العاده نورانی */
         body::before {
             content: "";
             position: fixed;
@@ -40,23 +39,8 @@
             width: 100%;
             height: 100%;
             background:
-                /* بافت مخملی */
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 255, 255, 0.015) 2px,
-                    rgba(255, 255, 255, 0.015) 4px
-                ),
-                /* خطوط عمودی طلایی */
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 80px,
-                    rgba(212, 175, 55, 0.06) 80px,
-                    rgba(212, 175, 55, 0.06) 81px
-                ),
-                /* هاله‌های فوق‌العاده درخشان */
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(212, 175, 55, 0.06) 80px, rgba(212, 175, 55, 0.06) 81px),
                 radial-gradient(ellipse at 15% 10%, rgba(255, 215, 0, 0.25) 0%, transparent 40%),
                 radial-gradient(ellipse at 85% 90%, rgba(255, 200, 50, 0.22) 0%, transparent 40%),
                 radial-gradient(ellipse at 50% 20%, rgba(212, 175, 55, 0.2) 0%, transparent 35%),
@@ -64,13 +48,11 @@
                 radial-gradient(ellipse at 70% 40%, rgba(255, 180, 40, 0.18) 0%, transparent 40%),
                 radial-gradient(ellipse at 10% 60%, rgba(200, 150, 30, 0.15) 0%, transparent 35%),
                 radial-gradient(ellipse at 90% 30%, rgba(255, 200, 50, 0.2) 0%, transparent 40%),
-                /* هالهٔ مرکزی */
                 radial-gradient(ellipse at 50% 50%, rgba(180, 140, 40, 0.12) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ذرات طلایی بیشتر و درخشان‌تر */
         .particles {
             position: fixed;
             top: 0;
@@ -107,7 +89,6 @@
             50% { transform: translateY(-25px) scale(1.5); opacity: 1; }
         }
 
-        /* حاشیهٔ طلایی درخشان‌تر */
         .border-frame {
             position: fixed;
             top: 10px;
@@ -132,7 +113,6 @@
             align-items: center;
         }
 
-        /* لوگو - دست نخورده */
         .logo {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
@@ -151,7 +131,6 @@
             text-shadow: 0 0 45px rgba(254, 240, 192, 1), 0 0 90px rgba(212, 175, 55, 0.5);
         }
 
-        /* لیست آهنگ‌ها - دست نخورده */
         .song-list {
             width: 100%;
             margin-bottom: 110px;
@@ -224,7 +203,6 @@
             line-height: 1.2;
         }
 
-        /* دکمه پخش - دست نخورده */
         .play-circle {
             width: 36px;
             height: 36px;
@@ -257,7 +235,6 @@
             fill: #060608;
         }
 
-        /* پلیر */
         .player-container {
             position: fixed;
             bottom: 20px;
@@ -282,42 +259,84 @@
             display: flex;
         }
 
-        /* دکمهٔ پخش خاص با انیمیشن پالس */
+        /* دکمهٔ پخش/توقف کاملاً جدید */
         .play-pause-btn {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(10, 10, 14, 0.8);
             border: 2px solid var(--gold);
             color: var(--gold);
-            font-size: 1.4rem;
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex-shrink: 0;
-            line-height: 1;
             position: relative;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.7), 0 0 50px rgba(212, 175, 55, 0.4); }
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.35), inset 0 0 8px rgba(212, 175, 55, 0.1);
         }
 
         .play-pause-btn:hover {
             background: var(--gold);
-            color: #060608;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 60px rgba(212, 175, 55, 0.6);
-            animation: none;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.8), 0 0 65px rgba(212, 175, 55, 0.5);
+            transform: scale(1.08);
         }
 
         .play-pause-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.94);
+            transition: transform 0.1s;
         }
+
+        /* آیکون پخش (مثلث) */
+        .play-icon {
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent var(--gold);
+            margin-left: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .play-pause-btn:hover .play-icon {
+            border-left-color: var(--black-deep);
+        }
+
+        /* آیکون توقف (دو خط عمودی) */
+        .pause-icon {
+            display: none;
+            width: 14px;
+            height: 16px;
+            position: relative;
+        }
+
+        .pause-icon::before,
+        .pause-icon::after {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+
+        .pause-icon::before { left: 0; }
+        .pause-icon::after { right: 0; }
+
+        .play-pause-btn:hover .pause-icon::before,
+        .play-pause-btn:hover .pause-icon::after {
+            background: var(--black-deep);
+        }
+
+        .play-pause-btn.paused .play-icon { display: none; }
+        .play-pause-btn.paused .pause-icon { display: block; }
+        .play-pause-btn.playing .play-icon { display: none; }
+        .play-pause-btn.playing .pause-icon { display: block; }
+        .play-pause-btn:not(.playing):not(.paused) .play-icon { display: block; }
+        .play-pause-btn:not(.playing):not(.paused) .pause-icon { display: none; }
 
         .progress-container {
             flex: 1;
@@ -347,7 +366,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* گرامافون حرفه‌ای با SVG */
         .vinyl-graphic {
             width: 44px;
             height: 44px;
@@ -370,86 +388,44 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
-            .logo {
-                font-size: 2.8rem;
-                margin-top: 45px;
-                margin-bottom: 35px;
-            }
-            .song-title {
-                font-size: 1.05rem;
-            }
-            .song-artist {
-                font-size: 0.75rem;
-            }
-            .song-item {
-                padding: 11px 15px;
-            }
-            .player-container {
-                bottom: 14px;
-                padding: 8px 14px;
-                gap: 10px;
-                border-radius: 24px;
-            }
-            .play-pause-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 1.3rem;
-            }
-            .vinyl-graphic {
-                width: 38px;
-                height: 38px;
-            }
-            .time {
-                min-width: 60px;
-                font-size: 0.65rem;
-            }
-            .border-frame {
-                top: 6px;
-                left: 6px;
-                right: 6px;
-                bottom: 6px;
-            }
+            .logo { font-size: 2.8rem; margin-top: 45px; margin-bottom: 35px; }
+            .song-title { font-size: 1.05rem; }
+            .song-artist { font-size: 0.75rem; }
+            .song-item { padding: 11px 15px; }
+            .player-container { bottom: 14px; padding: 8px 14px; gap: 10px; border-radius: 24px; }
+            .play-pause-btn { width: 38px; height: 38px; }
+            .vinyl-graphic { width: 38px; height: 38px; }
+            .time { min-width: 60px; font-size: 0.65rem; }
+            .border-frame { top: 6px; left: 6px; right: 6px; bottom: 6px; }
         }
     </style>
 </head>
 <body>
-    <!-- ذرات طلایی بیشتر -->
     <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
     </div>
 
-    <!-- حاشیه طلایی -->
     <div class="border-frame"></div>
 
     <div class="container">
-        <!-- لوگو -->
         <div class="logo">Samisaki</div>
 
-        <!-- لیست آهنگ -->
         <div class="song-list" id="songList"></div>
 
-        <!-- پلیر -->
         <div class="player-container" id="playerContainer">
-            <button class="play-pause-btn" id="playPauseBtn">▶️</button>
+            <button class="play-pause-btn" id="playPauseBtn">
+                <span class="play-icon"></span>
+                <span class="pause-icon"></span>
+            </button>
             <div class="progress-container" id="progressContainer">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
             <span class="time" id="timeDisplay">00:00 / 00:00</span>
             <div class="vinyl-graphic" id="vinylGraphic">
-                <!-- گرامافون SVG اپن‌سورس (طراحی واقعی صفحه وینیل) -->
                 <svg class="vinyl-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <radialGradient id="vinylGrad" cx="50%" cy="50%">
@@ -478,7 +454,7 @@
                         </radialGradient>
                         <radialGradient id="centerGrad" cx="50%" cy="50%">
                             <stop offset="0%" stop-color="#FEF0C0"/>
-                            <stop offset="60%" stop-color="#D4AF37"/>
+                            <stop offset="50%" stop-color="#E8C547"/>
                             <stop offset="100%" stop-color="#B8860B"/>
                         </radialGradient>
                         <filter id="glow">
@@ -489,14 +465,10 @@
                             </feMerge>
                         </filter>
                     </defs>
-                    <!-- دایرهٔ اصلی وینیل -->
                     <circle cx="50" cy="50" r="48" fill="url(#vinylGrad)" stroke="#D4AF37" stroke-width="2" filter="url(#glow)"/>
-                    <!-- دایرهٔ مرکزی طلایی -->
-                    <circle cx="50" cy="50" r="12" fill="url(#centerGrad)" stroke="#FEF0C0" stroke-width="1"/>
-                    <!-- نقطهٔ مرکزی -->
-                    <circle cx="50" cy="50" r="3" fill="#0a0a0a" opacity="0.8"/>
-                    <!-- بازتاب نور روی وینیل -->
-                    <ellipse cx="35" cy="25" rx="20" ry="6" fill="rgba(255,255,255,0.08)" transform="rotate(-40 35 25)"/>
+                    <circle cx="50" cy="50" r="12" fill="url(#centerGrad)" stroke="#FEF0C0" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="2.5" fill="#0a0a0a" opacity="0.9"/>
+                    <ellipse cx="32" cy="22" rx="22" ry="7" fill="rgba(255,255,255,0.06)" transform="rotate(-40 32 22)"/>
                 </svg>
             </div>
         </div>
@@ -537,7 +509,7 @@
             audio.src = songs[index].url;
             audio.load();
             playerContainer.classList.add('active');
-            playPauseBtn.textContent = '▶️';
+            playPauseBtn.classList.remove('playing', 'paused');
             vinylGraphic.classList.remove('playing');
             progressBar.style.width = '0%';
             timeDisplay.textContent = '00:00 / 00:00';
@@ -547,11 +519,13 @@
         function togglePlay() {
             if (audio.paused) {
                 audio.play();
-                playPauseBtn.textContent = '⏸️';
+                playPauseBtn.classList.add('playing');
+                playPauseBtn.classList.remove('paused');
                 vinylGraphic.classList.add('playing');
             } else {
                 audio.pause();
-                playPauseBtn.textContent = '▶️';
+                playPauseBtn.classList.add('paused');
+                playPauseBtn.classList.remove('playing');
                 vinylGraphic.classList.remove('playing');
             }
         }
@@ -563,7 +537,8 @@
         });
 
         audio.addEventListener('ended', () => {
-            playPauseBtn.textContent = '▶️';
+            playPauseBtn.classList.add('paused');
+            playPauseBtn.classList.remove('playing');
             vinylGraphic.classList.remove('playing');
             progressBar.style.width = '0%';
         });
@@ -593,10 +568,22 @@
             item.querySelector('.play-circle').addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (currentSongIndex === i) {
-                    if (audio.paused) { audio.play(); playPauseBtn.textContent = '⏸️'; vinylGraphic.classList.add('playing'); }
-                    else { audio.pause(); playPauseBtn.textContent = '▶️'; vinylGraphic.classList.remove('playing'); }
+                    if (audio.paused) {
+                        audio.play();
+                        playPauseBtn.classList.add('playing');
+                        playPauseBtn.classList.remove('paused');
+                        vinylGraphic.classList.add('playing');
+                    } else {
+                        audio.pause();
+                        playPauseBtn.classList.add('paused');
+                        playPauseBtn.classList.remove('playing');
+                        vinylGraphic.classList.remove('playing');
+                    }
                 } else {
-                    loadSong(i); audio.play(); playPauseBtn.textContent = '⏸️'; vinylGraphic.classList.add('playing');
+                    loadSong(i); audio.play();
+                    playPauseBtn.classList.add('playing');
+                    playPauseBtn.classList.remove('paused');
+                    vinylGraphic.classList.add('playing');
                 }
             });
             listEl.appendChild(item);
