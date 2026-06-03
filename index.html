@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samisaki Music</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,11 @@
         }
 
         body {
-            background: radial-gradient(ellipse at 50% 0%, #1a1a1a 0%, #0a0a0a 70%);
+            background-color: #0a0a0a;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(128, 0, 32, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(0, 100, 80, 0.1) 0%, transparent 50%);
             color: #d4af37;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
@@ -24,7 +28,7 @@
             position: relative;
         }
 
-        /* ذرات طلایی پس‌زمینه */
+        /* ذرات طلایی شناور */
         body::before {
             content: "";
             position: fixed;
@@ -32,10 +36,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            background-image: 
+                radial-gradient(2px 2px at 15% 25%, rgba(212,175,55,0.4), transparent),
+                radial-gradient(2px 2px at 85% 15%, rgba(212,175,55,0.3), transparent),
+                radial-gradient(1px 1px at 70% 70%, rgba(212,175,55,0.5), transparent),
+                radial-gradient(1px 1px at 30% 80%, rgba(212,175,55,0.3), transparent),
+                radial-gradient(1px 1px at 10% 60%, rgba(212,175,55,0.2), transparent),
+                radial-gradient(2px 2px at 90% 90%, rgba(212,175,55,0.4), transparent),
+                radial-gradient(1px 1px at 50% 10%, rgba(212,175,55,0.3), transparent),
+                radial-gradient(1px 1px at 40% 40%, rgba(212,175,55,0.2), transparent);
+            background-size: 200px 200px;
             pointer-events: none;
             z-index: 0;
+            animation: sparkle 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
 
         .container {
@@ -50,59 +68,56 @@
 
         /* لوگو */
         .logo-section {
-            margin-top: 50px;
+            margin-top: 60px;
             text-align: center;
         }
 
         .logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            background: linear-gradient(180deg, #f9d976 0%, #d4af37 40%, #b8860b 100%);
+            background: linear-gradient(180deg, #fef0c0 0%, #d4af37 35%, #b8860b 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
-            letter-spacing: 6px;
-            margin-bottom: 10px;
+            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.7));
+            letter-spacing: 8px;
+            margin-bottom: 12px;
         }
 
         .logo-underline {
-            width: 150px;
-            height: 3px;
+            width: 180px;
+            height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
-            margin: 0 auto;
+            margin: 0 auto 30px;
             border-radius: 3px;
-            box-shadow: 0 0 15px #d4af37;
+            box-shadow: 0 0 20px #d4af37;
         }
 
-        /* شخصیت مانگای رقصان */
-        .manga-girl {
-            font-size: 3.5rem;
-            display: inline-block;
-            animation: dance 1.2s infinite alternate ease-in-out;
-            filter: drop-shadow(0 0 15px #d4af37);
-            margin: 20px 0 10px;
-            cursor: default;
-            user-select: none;
+        /* خرس رقصان با کیفیت */
+        .bear-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 20px auto 30px;
+            animation: bounce 1.4s infinite ease-in-out;
         }
 
-        @keyframes dance {
-            0% {
-                transform: translateY(0) rotate(-3deg) scale(1);
-            }
-            50% {
-                transform: translateY(-8px) rotate(0deg) scale(1.05);
-            }
-            100% {
-                transform: translateY(0) rotate(3deg) scale(1);
-            }
+        .bear {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-12px) rotate(0deg); }
+            100% { transform: translateY(0) rotate(5deg); }
         }
 
         /* لیست آهنگ‌ها */
         .song-list {
             width: 100%;
-            margin: 30px 0 120px;
+            margin: 10px 0 130px;
             display: flex;
             flex-direction: column;
             gap: 18px;
@@ -110,40 +125,42 @@
         }
 
         .song-item {
-            background: rgba(15, 15, 15, 0.85);
-            border-left: 4px solid #d4af37;
-            border-radius: 10px;
+            background: rgba(12, 12, 12, 0.8);
+            border-left: 5px solid #d4af37;
+            border-radius: 12px;
             padding: 18px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
 
-        .song-item::after {
+        .song-item::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .song-item:hover {
-            transform: translateY(-3px);
-            border-left-width: 6px;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px) scale(1.01);
+            border-left-width: 8px;
+            border-left-color: #ffd700;
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.25), 0 0 0 1px rgba(212,175,55,0.3);
+            background: rgba(20, 20, 20, 0.9);
         }
 
-        .song-item:hover::after {
+        .song-item:hover::before {
             opacity: 1;
         }
 
@@ -154,44 +171,69 @@
         }
 
         .song-title {
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
-            font-size: 1.15rem;
+            font-size: 1.4rem;
             color: #fff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .song-artist {
             font-weight: 300;
-            color: #d4af37;
+            color: #cf9f4b;
             font-size: 0.9rem;
-            margin-top: 3px;
+            margin-top: 4px;
+            font-style: italic;
         }
 
-        .play-icon {
-            font-size: 1.6rem;
-            color: #d4af37;
+        /* دکمه پخش جدید */
+        .play-button {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
             z-index: 1;
-            transition: transform 0.2s;
+            position: relative;
+            box-shadow: 0 0 12px rgba(212,175,55,0.3);
         }
 
-        .song-item:hover .play-icon {
-            transform: scale(1.2);
+        .play-button:hover {
+            background: #d4af37;
+            box-shadow: 0 0 25px #d4af37;
+            transform: scale(1.1);
+        }
+
+        .play-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #d4af37;
+            transition: fill 0.3s;
+        }
+
+        .play-button:hover svg {
+            fill: #0a0a0a;
         }
 
         /* پلیر مخفی پایین صفحه */
         .player-container {
             position: fixed;
-            bottom: 30px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            max-width: 650px;
-            background: rgba(10, 10, 10, 0.92);
+            max-width: 680px;
+            background: rgba(8, 8, 8, 0.92);
             border: 1.5px solid #d4af37;
-            border-radius: 20px;
-            padding: 20px 25px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            border-radius: 22px;
+            padding: 22px 28px;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25), inset 0 0 30px rgba(212, 175, 55, 0.04);
             display: none;
             z-index: 1000;
             transition: all 0.3s ease;
@@ -204,12 +246,13 @@
 
         .now-playing {
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             margin-bottom: 12px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             opacity: 0.9;
+            font-weight: 300;
         }
 
         .controls {
@@ -223,42 +266,43 @@
             border: 2px solid #d4af37;
             color: #d4af37;
             font-size: 1.8rem;
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            background: rgba(0,0,0,0.4);
         }
 
         .play-pause-btn:hover {
             background: #d4af37;
             color: #0a0a0a;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.8);
         }
 
         .progress-container {
             flex: 1;
-            height: 8px;
+            height: 10px;
             background: #2a2a2a;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
         }
 
         .progress-bar {
             height: 100%;
             background: linear-gradient(90deg, #d4af37, #ffd700);
             width: 0%;
-            border-radius: 4px;
+            border-radius: 5px;
             position: relative;
             transition: width 0.1s linear;
-            box-shadow: 0 0 10px #d4af37;
+            box-shadow: 0 0 15px #d4af37;
         }
 
         .progress-bar::after {
@@ -267,26 +311,27 @@
             right: 0;
             top: 50%;
             transform: translate(50%, -50%);
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             background: #ffd700;
             border-radius: 50%;
-            box-shadow: 0 0 15px #d4af37;
+            box-shadow: 0 0 20px #d4af37, 0 0 5px #fff;
         }
 
         .time {
             color: #d4af37;
-            font-size: 0.85rem;
-            min-width: 100px;
+            font-size: 0.9rem;
+            min-width: 105px;
             text-align: right;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-weight: 300;
         }
 
-        /* گرامافون (وینیل) */
+        /* گرامافون با بازو */
         .vinyl-container {
             position: relative;
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             flex-shrink: 0;
         }
 
@@ -294,9 +339,9 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, #0a0a0a 15%, #1a1a1a 16%, #1a1a1a 30%, #333 31%, #0a0a0a 32%, #0a0a0a 100%);
-            border: 2px solid #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.8);
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 12%, #1a1a1a 13%, #1a1a1a 28%, #333 29%, #0a0a0a 30%, #0a0a0a 100%);
+            border: 2.5px solid #d4af37;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(0,0,0,0.9);
             position: relative;
             animation: spin 3s linear infinite paused;
         }
@@ -311,43 +356,63 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 15px;
-            height: 15px;
-            background: #d4af37;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, #d4af37 30%, #8b6508 80%);
             border-radius: 50%;
-            box-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37;
+            box-shadow: 0 0 15px #d4af37, 0 0 25px #d4af37;
         }
 
-        .vinyl-record::after {
-            content: "";
+        /* بازوی گرامافون */
+        .tonearm {
             position: absolute;
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 20px;
-            background: rgba(255,255,255,0.3);
+            top: 2px;
+            right: -18px;
+            width: 30px;
+            height: 55px;
+            transform-origin: top right;
+            transform: rotate(15deg);
+            transition: transform 0.3s;
+        }
+
+        .tonearm .base {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #555;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #000;
+        }
+
+        .tonearm .arm {
+            position: absolute;
+            top: 10px;
+            right: 4px;
+            width: 4px;
+            height: 40px;
+            background: #888;
             border-radius: 2px;
-            box-shadow: 0 0 8px rgba(255,255,255,0.1);
+            transform: rotate(-10deg);
+            transform-origin: top right;
+            box-shadow: 0 0 3px #000;
+        }
+
+        .tonearm .head {
+            position: absolute;
+            top: 45px;
+            right: -2px;
+            width: 12px;
+            height: 8px;
+            background: #bbb;
+            border-radius: 2px;
+            transform: rotate(10deg);
+            box-shadow: 0 0 4px #000;
         }
 
         @keyframes spin {
             100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .logo-text {
-                font-size: 3rem;
-                letter-spacing: 4px;
-            }
-            .controls {
-                gap: 12px;
-            }
-            .vinyl-container {
-                width: 45px;
-                height: 45px;
-            }
         }
     </style>
 </head>
@@ -359,9 +424,33 @@
             <div class="logo-underline"></div>
         </div>
 
-        <!-- شخصیت مانگای ژاپنی رقصان -->
-        <div class="manga-girl" title="♪(๑ᴖ◡ᴖ๑)♪">
-            ☆*:.｡. o(≧▽≦)o .｡.:*☆
+        <!-- خرس رقصان با کیفیت (SVG) -->
+        <div class="bear-container">
+            <svg class="bear" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- گوش‌ها -->
+                <circle cx="60" cy="55" r="22" fill="#6B4226"/>
+                <circle cx="140" cy="55" r="22" fill="#6B4226"/>
+                <circle cx="60" cy="55" r="13" fill="#D29F7A"/>
+                <circle cx="140" cy="55" r="13" fill="#D29F7A"/>
+                <!-- صورت -->
+                <ellipse cx="100" cy="105" rx="55" ry="52" fill="#8B5A3C"/>
+                <ellipse cx="100" cy="110" rx="42" ry="38" fill="#D29F7A"/>
+                <!-- چشم‌ها -->
+                <circle cx="80" cy="95" r="6" fill="#1A1A1A"/>
+                <circle cx="120" cy="95" r="6" fill="#1A1A1A"/>
+                <circle cx="82" cy="93" r="2" fill="white"/>
+                <circle cx="122" cy="93" r="2" fill="white"/>
+                <!-- بینی -->
+                <ellipse cx="100" cy="112" rx="7" ry="5" fill="#4A2E1A"/>
+                <!-- دهان -->
+                <path d="M93 120 Q100 128 107 120" stroke="#4A2E1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <!-- گونه‌ها -->
+                <circle cx="70" cy="118" r="7" fill="#F4A896" opacity="0.6"/>
+                <circle cx="130" cy="118" r="7" fill="#F4A896" opacity="0.6"/>
+                <!-- بدن -->
+                <ellipse cx="100" cy="175" rx="38" ry="30" fill="#8B5A3C"/>
+                <ellipse cx="100" cy="170" rx="28" ry="20" fill="#D29F7A"/>
+            </svg>
         </div>
 
         <!-- لیست آهنگ‌ها -->
@@ -378,6 +467,11 @@
                 <span class="time" id="timeDisplay">00:00 / 00:00</span>
                 <div class="vinyl-container">
                     <div class="vinyl-record" id="vinylRecord"></div>
+                    <div class="tonearm">
+                        <div class="base"></div>
+                        <div class="arm"></div>
+                        <div class="head"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -386,53 +480,17 @@
     <audio id="audioPlayer"></audio>
 
     <script>
-        // لیست آهنگ‌ها به ترتیب خواسته شده (بدون تغییر)
+        // لیست آهنگ‌ها (بدون تغییر)
         const songs = [
-            {
-                title: "Bin Jip (3-Iron)",
-                artist: "Natacha Atlas - Slvian",
-                url: "https://dl.ritmahang.com/audio/arshive/natacha%20atlas%20-%20bin-jip%20(3-iron)%20ost%202004%20-%20slvian%20(www.delshekastegan.ir).mp3"
-            },
-            {
-                title: "Maison",
-                artist: "Emilio Piano x Lucie",
-                url: "https://dl.musicviral.ir/Music/04-04/Emilio%20Piano%20x%20Lucie%20-%20Maison.mp3"
-            },
-            {
-                title: "Summer Overture",
-                artist: "Summer (Requiem for a Dream)",
-                url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Summer-Overture-Summer.mp3"
-            },
-            {
-                title: "Lux Aeterna",
-                artist: "Winter (Requiem for a Dream)",
-                url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Lux-Aeterna-Winter.mp3"
-            },
-            {
-                title: "Roads",
-                artist: "Portishead",
-                url: "https://files.musicfeed.ir/2020/07/Portishead-Roads.mp3"
-            },
-            {
-                title: "Game of Thrones",
-                artist: "Ramin Djawadi",
-                url: "https://irsv.upmusics.com/Downloads/Musics/Ramin%20Djawadi%20%7C%20Game%20Of%20Thrones%20(320).mp3"
-            },
-            {
-                title: "Hostage",
-                artist: "Billie Eilish",
-                url: "https://sv.jenabmusic.com/music/2026/05/13/Billie-Eilish-Hostage.mp3"
-            },
-            {
-                title: "Bad Guy",
-                artist: "Billie Eilish",
-                url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20Bad%20Guy.Mp3"
-            },
-            {
-                title: "No Time To Die",
-                artist: "Billie Eilish",
-                url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20No%20Time%20To%20Die.Mp3"
-            }
+            { title: "Bin Jip (3-Iron)", artist: "Natacha Atlas - Slvian", url: "https://dl.ritmahang.com/audio/arshive/natacha%20atlas%20-%20bin-jip%20(3-iron)%20ost%202004%20-%20slvian%20(www.delshekastegan.ir).mp3" },
+            { title: "Maison", artist: "Emilio Piano x Lucie", url: "https://dl.musicviral.ir/Music/04-04/Emilio%20Piano%20x%20Lucie%20-%20Maison.mp3" },
+            { title: "Summer Overture", artist: "Summer (Requiem for a Dream)", url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Summer-Overture-Summer.mp3" },
+            { title: "Lux Aeterna", artist: "Winter (Requiem for a Dream)", url: "https://www.musicdagh.ir/wp-content/uploads/2018/12/Lux-Aeterna-Winter.mp3" },
+            { title: "Roads", artist: "Portishead", url: "https://files.musicfeed.ir/2020/07/Portishead-Roads.mp3" },
+            { title: "Game of Thrones", artist: "Ramin Djawadi", url: "https://irsv.upmusics.com/Downloads/Musics/Ramin%20Djawadi%20%7C%20Game%20Of%20Thrones%20(320).mp3" },
+            { title: "Hostage", artist: "Billie Eilish", url: "https://sv.jenabmusic.com/music/2026/05/13/Billie-Eilish-Hostage.mp3" },
+            { title: "Bad Guy", artist: "Billie Eilish", url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20Bad%20Guy.Mp3" },
+            { title: "No Time To Die", artist: "Billie Eilish", url: "https://sv.jenabmusic.com/music/2025/03/07/Billie%20Eilish%20-%20No%20Time%20To%20Die.Mp3" }
         ];
 
         const audio = document.getElementById('audioPlayer');
@@ -498,7 +556,7 @@
 
         playPauseBtn.addEventListener('click', togglePlay);
 
-        // ساختن لیست آهنگ‌ها
+        // ساختن لیست با دکمه پخش جدید
         const songListEl = document.getElementById('songList');
         songs.forEach((song, index) => {
             const item = document.createElement('div');
@@ -508,9 +566,15 @@
                     <span class="song-title">${song.title}</span>
                     <span class="song-artist">${song.artist}</span>
                 </div>
-                <span class="play-icon">▶️</span>
+                <div class="play-button">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
             `;
-            item.addEventListener('click', () => {
+            const playBtn = item.querySelector('.play-button');
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 if (currentSongIndex === index) {
                     if (audio.paused) {
                         audio.play();
