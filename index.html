@@ -31,7 +31,7 @@
             position: relative;
         }
 
-        /* پس‌زمینهٔ مخملی لوکس */
+        /* پس‌زمینهٔ فوق‌العاده نورانی */
         body::before {
             content: "";
             position: fixed;
@@ -45,26 +45,32 @@
                     0deg,
                     transparent,
                     transparent 2px,
-                    rgba(255, 255, 255, 0.008) 2px,
-                    rgba(255, 255, 255, 0.008) 4px
+                    rgba(255, 255, 255, 0.015) 2px,
+                    rgba(255, 255, 255, 0.015) 4px
                 ),
                 /* خطوط عمودی طلایی */
                 repeating-linear-gradient(
                     90deg,
                     transparent,
                     transparent 80px,
-                    rgba(212, 175, 55, 0.03) 80px,
-                    rgba(212, 175, 55, 0.03) 81px
+                    rgba(212, 175, 55, 0.06) 80px,
+                    rgba(212, 175, 55, 0.06) 81px
                 ),
-                /* هاله‌های طلایی */
-                radial-gradient(ellipse at 20% 15%, rgba(212, 175, 55, 0.2) 0%, transparent 45%),
-                radial-gradient(ellipse at 80% 85%, rgba(212, 175, 55, 0.15) 0%, transparent 45%),
-                radial-gradient(ellipse at 40% 50%, rgba(180, 130, 40, 0.1) 0%, transparent 50%);
+                /* هاله‌های فوق‌العاده درخشان */
+                radial-gradient(ellipse at 15% 10%, rgba(255, 215, 0, 0.25) 0%, transparent 40%),
+                radial-gradient(ellipse at 85% 90%, rgba(255, 200, 50, 0.22) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 20%, rgba(212, 175, 55, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 30% 80%, rgba(218, 165, 32, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 70% 40%, rgba(255, 180, 40, 0.18) 0%, transparent 40%),
+                radial-gradient(ellipse at 10% 60%, rgba(200, 150, 30, 0.15) 0%, transparent 35%),
+                radial-gradient(ellipse at 90% 30%, rgba(255, 200, 50, 0.2) 0%, transparent 40%),
+                /* هالهٔ مرکزی */
+                radial-gradient(ellipse at 50% 50%, rgba(180, 140, 40, 0.12) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ذرات طلایی */
+        /* ذرات طلایی بیشتر و درخشان‌تر */
         .particles {
             position: fixed;
             top: 0;
@@ -78,38 +84,41 @@
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold);
+            background: var(--gold-light);
+            box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 30px rgba(255, 215, 0, 0.6);
             animation: float 6s infinite ease-in-out;
-            opacity: 0.7;
         }
 
-        .particle:nth-child(1) { width: 3px; height: 3px; top: 15%; left: 12%; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 2px; height: 2px; top: 25%; left: 78%; animation-delay: 1s; }
-        .particle:nth-child(3) { width: 3px; height: 3px; top: 65%; left: 22%; animation-delay: 2s; }
-        .particle:nth-child(4) { width: 2px; height: 2px; top: 75%; left: 85%; animation-delay: 0.5s; }
-        .particle:nth-child(5) { width: 2px; height: 2px; top: 10%; left: 50%; animation-delay: 1.5s; }
-        .particle:nth-child(6) { width: 3px; height: 3px; top: 45%; left: 65%; animation-delay: 2.5s; }
-        .particle:nth-child(7) { width: 2px; height: 2px; top: 85%; left: 40%; animation-delay: 3s; }
-        .particle:nth-child(8) { width: 3px; height: 3px; top: 35%; left: 8%; animation-delay: 0.8s; }
+        .particle:nth-child(1) { width: 4px; height: 4px; top: 12%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 3px; height: 3px; top: 22%; left: 75%; animation-delay: 1.2s; }
+        .particle:nth-child(3) { width: 4px; height: 4px; top: 60%; left: 18%; animation-delay: 2.4s; }
+        .particle:nth-child(4) { width: 2px; height: 2px; top: 78%; left: 82%; animation-delay: 0.6s; }
+        .particle:nth-child(5) { width: 3px; height: 3px; top: 8%; left: 48%; animation-delay: 1.8s; }
+        .particle:nth-child(6) { width: 4px; height: 4px; top: 42%; left: 62%; animation-delay: 3s; }
+        .particle:nth-child(7) { width: 3px; height: 3px; top: 88%; left: 38%; animation-delay: 0.3s; }
+        .particle:nth-child(8) { width: 4px; height: 4px; top: 32%; left: 6%; animation-delay: 2.1s; }
+        .particle:nth-child(9) { width: 2px; height: 2px; top: 50%; left: 90%; animation-delay: 1.5s; }
+        .particle:nth-child(10) { width: 3px; height: 3px; top: 70%; left: 55%; animation-delay: 0.9s; }
+        .particle:nth-child(11) { width: 4px; height: 4px; top: 25%; left: 30%; animation-delay: 2.7s; }
+        .particle:nth-child(12) { width: 2px; height: 2px; top: 15%; left: 92%; animation-delay: 1.1s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
-            50% { transform: translateY(-20px) scale(1.3); opacity: 1; }
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-25px) scale(1.5); opacity: 1; }
         }
 
-        /* حاشیهٔ طلایی */
+        /* حاشیهٔ طلایی درخشان‌تر */
         .border-frame {
             position: fixed;
             top: 10px;
             left: 10px;
             right: 10px;
             bottom: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 6px;
             pointer-events: none;
             z-index: 0;
-            box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.08);
+            box-shadow: inset 0 0 50px rgba(212, 175, 55, 0.12), 0 0 30px rgba(212, 175, 55, 0.15);
         }
 
         .container {
@@ -142,7 +151,7 @@
             text-shadow: 0 0 45px rgba(254, 240, 192, 1), 0 0 90px rgba(212, 175, 55, 0.5);
         }
 
-        /* لیست آهنگ‌ها */
+        /* لیست آهنگ‌ها - دست نخورده */
         .song-list {
             width: 100%;
             margin-bottom: 110px;
@@ -215,7 +224,7 @@
             line-height: 1.2;
         }
 
-        /* دکمه پخش */
+        /* دکمه پخش - دست نخورده */
         .play-circle {
             width: 36px;
             height: 36px;
@@ -265,7 +274,7 @@
             display: none;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), 0 0 80px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25), 0 0 80px rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
 
@@ -273,13 +282,14 @@
             display: flex;
         }
 
+        /* دکمهٔ پخش خاص با انیمیشن پالس */
         .play-pause-btn {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 2px solid var(--gold);
             color: var(--gold);
             font-size: 1.4rem;
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -288,12 +298,25 @@
             transition: all 0.3s;
             flex-shrink: 0;
             line-height: 1;
+            position: relative;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.7), 0 0 50px rgba(212, 175, 55, 0.4); }
         }
 
         .play-pause-btn:hover {
             background: var(--gold);
             color: #060608;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 0 0 60px rgba(212, 175, 55, 0.6);
+            animation: none;
+        }
+
+        .play-pause-btn:active {
+            transform: scale(0.95);
         }
 
         .progress-container {
@@ -324,72 +347,23 @@
             letter-spacing: 0.3px;
         }
 
-        /* گرامافون گرافیکی */
+        /* گرامافون حرفه‌ای با SVG */
         .vinyl-graphic {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             flex-shrink: 0;
             position: relative;
+            animation: rotateVinyl 2.5s linear infinite paused;
         }
 
-        .vinyl-disc {
+        .vinyl-graphic.playing {
+            animation-play-state: running;
+        }
+
+        .vinyl-svg {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background:
-                radial-gradient(
-                    circle at 50% 50%,
-                    #0a0a0a 14%,
-                    #111 15%,
-                    #111 22%,
-                    #2a2a2a 23%,
-                    #0a0a0a 24%,
-                    #0a0a0a 30%,
-                    #1a1a1a 31%,
-                    #1a1a1a 38%,
-                    #2a2a2a 39%,
-                    #0a0a0a 40%,
-                    #0a0a0a 100%
-                );
-            border: 2px solid var(--gold);
-            box-shadow:
-                0 0 12px rgba(212, 175, 55, 0.5),
-                inset 0 0 10px rgba(0,0,0,0.8),
-                0 0 0 1px rgba(254,240,192,0.2);
-            animation: rotateVinyl 2.5s linear infinite paused;
-            position: relative;
-        }
-
-        .vinyl-disc::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #FEF0C0 20%, #B8860B 80%);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--gold), 0 0 16px var(--gold);
-        }
-
-        /* بازتاب نور روی وینیل */
-        .vinyl-shine {
-            position: absolute;
-            top: 4px;
-            left: 10px;
-            width: 12px;
-            height: 5px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transform: rotate(-30deg);
-            pointer-events: none;
-            animation: rotateVinyl 2.5s linear infinite paused;
-        }
-
-        .vinyl-graphic.playing .vinyl-disc,
-        .vinyl-graphic.playing .vinyl-shine {
-            animation-play-state: running;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
         }
 
         @keyframes rotateVinyl {
@@ -419,13 +393,13 @@
                 border-radius: 24px;
             }
             .play-pause-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 1.2rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1.3rem;
             }
             .vinyl-graphic {
-                width: 32px;
-                height: 32px;
+                width: 38px;
+                height: 38px;
             }
             .time {
                 min-width: 60px;
@@ -441,8 +415,12 @@
     </style>
 </head>
 <body>
-    <!-- ذرات طلایی -->
+    <!-- ذرات طلایی بیشتر -->
     <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
@@ -471,8 +449,55 @@
             </div>
             <span class="time" id="timeDisplay">00:00 / 00:00</span>
             <div class="vinyl-graphic" id="vinylGraphic">
-                <div class="vinyl-disc"></div>
-                <div class="vinyl-shine"></div>
+                <!-- گرامافون SVG اپن‌سورس (طراحی واقعی صفحه وینیل) -->
+                <svg class="vinyl-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="vinylGrad" cx="50%" cy="50%">
+                            <stop offset="0%" stop-color="#0a0a0a"/>
+                            <stop offset="14%" stop-color="#0a0a0a"/>
+                            <stop offset="15%" stop-color="#1a1a1a"/>
+                            <stop offset="22%" stop-color="#2a2a2a"/>
+                            <stop offset="23%" stop-color="#0a0a0a"/>
+                            <stop offset="30%" stop-color="#0a0a0a"/>
+                            <stop offset="31%" stop-color="#1a1a1a"/>
+                            <stop offset="38%" stop-color="#2a2a2a"/>
+                            <stop offset="39%" stop-color="#0a0a0a"/>
+                            <stop offset="46%" stop-color="#0a0a0a"/>
+                            <stop offset="47%" stop-color="#1a1a1a"/>
+                            <stop offset="54%" stop-color="#2a2a2a"/>
+                            <stop offset="55%" stop-color="#0a0a0a"/>
+                            <stop offset="62%" stop-color="#0a0a0a"/>
+                            <stop offset="63%" stop-color="#1a1a1a"/>
+                            <stop offset="70%" stop-color="#2a2a2a"/>
+                            <stop offset="71%" stop-color="#0a0a0a"/>
+                            <stop offset="78%" stop-color="#0a0a0a"/>
+                            <stop offset="79%" stop-color="#1a1a1a"/>
+                            <stop offset="86%" stop-color="#2a2a2a"/>
+                            <stop offset="87%" stop-color="#0a0a0a"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
+                        </radialGradient>
+                        <radialGradient id="centerGrad" cx="50%" cy="50%">
+                            <stop offset="0%" stop-color="#FEF0C0"/>
+                            <stop offset="60%" stop-color="#D4AF37"/>
+                            <stop offset="100%" stop-color="#B8860B"/>
+                        </radialGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- دایرهٔ اصلی وینیل -->
+                    <circle cx="50" cy="50" r="48" fill="url(#vinylGrad)" stroke="#D4AF37" stroke-width="2" filter="url(#glow)"/>
+                    <!-- دایرهٔ مرکزی طلایی -->
+                    <circle cx="50" cy="50" r="12" fill="url(#centerGrad)" stroke="#FEF0C0" stroke-width="1"/>
+                    <!-- نقطهٔ مرکزی -->
+                    <circle cx="50" cy="50" r="3" fill="#0a0a0a" opacity="0.8"/>
+                    <!-- بازتاب نور روی وینیل -->
+                    <ellipse cx="35" cy="25" rx="20" ry="6" fill="rgba(255,255,255,0.08)" transform="rotate(-40 35 25)"/>
+                </svg>
             </div>
         </div>
     </div>
